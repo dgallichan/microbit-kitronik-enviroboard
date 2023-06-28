@@ -12,15 +12,12 @@ input.onButtonPressed(Button.AB, function () {
     kitronik_air_quality.clear()
 })
 input.onButtonPressed(Button.B, function () {
-    if (doLogging) {
-        kitronik_air_quality.sendAllData()
-    }
+    kitronik_air_quality.sendAllData()
 })
-let doLogging = false
 let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
-doLogging = false
+let doLogging = false
 kitronik_air_quality.clear()
-kitronik_air_quality.setTime(10, 19, 0)
+kitronik_air_quality.setTime(10, 45, 0)
 kitronik_air_quality.setDate(28, 6, 23)
 kitronik_air_quality.show("Welcome!", 1, kitronik_air_quality.ShowAlign.Centre)
 kitronik_air_quality.show("Press A for logging", 3, kitronik_air_quality.ShowAlign.Centre)
@@ -45,6 +42,7 @@ if (isPressed == 1) {
     kitronik_air_quality.includeIAQ(kitronik_air_quality.onOff(true))
     kitronik_air_quality.includeCO2(kitronik_air_quality.onOff(true))
     kitronik_air_quality.includeLight(kitronik_air_quality.onOff(true))
+    doLogging = true
 } else {
     kitronik_air_quality.show("Data Transfer Mode", 3, kitronik_air_quality.ShowAlign.Centre)
     kitronik_air_quality.show("(Not logging)", 4, kitronik_air_quality.ShowAlign.Centre)
