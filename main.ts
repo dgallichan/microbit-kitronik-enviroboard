@@ -16,6 +16,7 @@ input.onButtonPressed(Button.B, function () {
         kitronik_air_quality.sendAllData()
     }
 })
+let isPressed = 0
 let doLogging = 0
 let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
 doLogging = 0
@@ -25,7 +26,6 @@ kitronik_air_quality.setDate(28, 6, 23)
 kitronik_air_quality.show("Welcome!", 1, kitronik_air_quality.ShowAlign.Centre)
 kitronik_air_quality.show("Press A for logging", 3, kitronik_air_quality.ShowAlign.Centre)
 kitronik_air_quality.show("Press B for transfer", 4, kitronik_air_quality.ShowAlign.Centre)
-let isPressed = 0
 while (isPressed == 0) {
     if (input.buttonIsPressed(Button.A)) {
         isPressed = 1
@@ -49,11 +49,12 @@ if (isPressed == 1) {
 } else {
     kitronik_air_quality.show("Data Transfer Mode", 3, kitronik_air_quality.ShowAlign.Centre)
     kitronik_air_quality.show("(Not logging)", 4, kitronik_air_quality.ShowAlign.Centre)
+    doLogging = -1
 }
 loops.everyInterval(5000, function () {
     if (doLogging == 1) {
         kitronik_air_quality.measureData()
-        basic.pause(100)
+        basic.pause(500)
         kitronik_air_quality.logData()
         kitronik_air_quality.clear()
         kitronik_air_quality.show("T:" + kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C) + " C", 3, kitronik_air_quality.ShowAlign.Left)
