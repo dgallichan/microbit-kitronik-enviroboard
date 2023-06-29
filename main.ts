@@ -61,6 +61,7 @@ loops.everyInterval(5000, function () {
         kitronik_air_quality.show("P:" + kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa) + " Pa", 4, kitronik_air_quality.ShowAlign.Left)
         kitronik_air_quality.show("H:" + kitronik_air_quality.readHumidity() + "", 5, kitronik_air_quality.ShowAlign.Left)
         kitronik_air_quality.show("Air Q:" + kitronik_air_quality.getAirQualityPercent() + "", 6, kitronik_air_quality.ShowAlign.Left)
-        kitronik_air_quality.show("eCO2" + kitronik_air_quality.readeCO2() + "", 6, kitronik_air_quality.ShowAlign.Left)
+        kitronik_air_quality.show("eCO2" + kitronik_air_quality.readeCO2() + "", 7, kitronik_air_quality.ShowAlign.Left)
+        kitronik_air_quality.show("GR:" + kitronik_air_quality.readGasRes() + "", 8, kitronik_air_quality.ShowAlign.Left)
     }
 })
