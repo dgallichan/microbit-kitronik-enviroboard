@@ -1,8 +1,8 @@
 input.onButtonPressed(Button.A, function () {
-	
+    radioSendData()
 })
 function radioSendData () {
-    waitTime = 500
+    waitTime = 2000
     radio.sendValue("T", kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C))
     basic.pause(waitTime)
     radio.sendValue("P", kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa))
@@ -64,6 +64,9 @@ if (isPressed == 1) {
     kitronik_air_quality.show("(Not logging)", 4, kitronik_air_quality.ShowAlign.Centre)
     doLogging = -1
 }
+loops.everyInterval(2 * 60000, function () {
+    radioSendData()
+})
 loops.everyInterval(5000, function () {
     if (doLogging == 1) {
         kitronik_air_quality.measureData()
