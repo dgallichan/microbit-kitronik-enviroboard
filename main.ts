@@ -1,6 +1,16 @@
 input.onButtonPressed(Button.A, function () {
 	
 })
+function radioSendData () {
+    waitTime = 500
+    radio.sendValue("T", kitronik_air_quality.readTemperature(kitronik_air_quality.TemperatureUnitList.C))
+    basic.pause(waitTime)
+    radio.sendValue("P", kitronik_air_quality.readPressure(kitronik_air_quality.PressureUnitList.Pa))
+    basic.pause(waitTime)
+    radio.sendValue("H", kitronik_air_quality.readHumidity())
+    basic.pause(waitTime)
+    radio.sendValue("AQ", kitronik_air_quality.getAirQualityPercent())
+}
 input.onButtonPressed(Button.AB, function () {
     kitronik_air_quality.clear()
     kitronik_air_quality.eraseData()
@@ -16,8 +26,11 @@ input.onButtonPressed(Button.B, function () {
         kitronik_air_quality.sendAllData()
     }
 })
+let waitTime = 0
 let isPressed = 0
 let doLogging = 0
+radio.setFrequencyBand(83)
+radio.setGroup(255)
 let statusLEDs = kitronik_air_quality.createAirQualityZIPDisplay()
 doLogging = 0
 kitronik_air_quality.clear()
